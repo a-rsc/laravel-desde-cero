@@ -34,13 +34,14 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        // return $request->all();
-
+        // Validación con mensajes personalizados...
         $request->validate([
             'name' => 'required|between:2,80',
             'email' => 'required|email',
             'subject' => 'required|between:2,80',
             'content' => 'required|between:3,2048',
+        ], [
+            'name.required' => __('I need your name'),
         ]);
 
         return $request->all();

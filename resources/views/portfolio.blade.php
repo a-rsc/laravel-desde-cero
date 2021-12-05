@@ -4,6 +4,8 @@
 
 @section('content')
     <h1>Portfolio</h1>
+    <h1>{{ __('Portfolio') }}</h1>
+    <h1>@lang('Portfolio')</h1>
     <ul>
     @forelse ($portfolios as $portfolio)
         <li>{{ $portfolio['title'] }} <small style="color: red;">{{ $loop->last ? 'Es el último' : 'No es el ultimo' }}</small></li>

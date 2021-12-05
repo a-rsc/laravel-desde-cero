@@ -4,6 +4,8 @@
 
 @section('content')
     <h1>Contact</h1>
+    <h1>{{ __('Contact') }}</h1>
+    <h1>@lang('Contact')</h1>
     @if ($errors->any())
         {{-- {{ var_dump($errors->all()) }} --}}
         @foreach ($errors->all() as $error)
@@ -26,6 +28,6 @@
         <textarea name="content" cols="30" rows="10" placeholder="Contenido...">{{ old('content') }}</textarea><br>
         {!! $errors->first('content', '<small style="color: red">:message</small><br>') !!}
 
-        <button>Enviar</button>
+        <button>@lang('Send')</button>
     </form>
 @endsection
