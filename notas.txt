@@ -61,4 +61,46 @@ Video 32. Cómo proteger rutas con usuario y contraseña
 
     Middlewares: filtran las peticiones HTTP
 
+------------------------------------------------------------------------------
 
+Video 33. Introducción a Laravel mix
+
+    resources/sass/app.scss -> para compilarlo utilizamos Laravel mix. Laravel mix nos proporciona una API fluida para definir los pasos de compilación de Webpack de nuestra aplicación Laravel utilizando varios procesadores de CSS y Javascript.
+
+    webpack.mix.js
+    Podríamos utilizar less o stylus
+
+mix.js('resources/js/app.js', 'public/js')
+    .vue()
+    .less('resources/less/app.less', 'public/css');
+
+mix.js('resources/js/app.js', 'public/js')
+    .vue()
+    .stylus('resources/xxx', 'public/css');
+
+    Para realizar la compilación se debe tener node en nuestro sistema... Una vez instaldo se dispone de node y npm en la terminal...
+
+--- Otra opción a npm es yarn. Se puede instalar con el comando -> npm install --global yarn
+
+A continuación, se instalan las dependencias de Laravel para el frontend, es decir, las dependencias definidas en el archivo package.json. -> npm install 'o' yarn
+Aparece una nueva carpeta en nuestra instalación llamada node_modules donde se almacenan todas las dependencias. Una vez instaladas se puede compilar los archivos -> npm run dev 'o' yarn dev
+
+Para evitar la continua compilación se puede ejecutar -> npm run watch 'o' yarn watch
+
+--- Para evitar refrescar el navegador manualmente cada vez que hagamos un cambio es utilizar BrowserSync. Se agrega automáticamente cuando ejecutamos -> npm run watch 'o' yarn watch
+// webpack.mix.js
+mix.browserSync('http://localhost:8000/');
+
+BrowserSync también nos facilita otras url dentro de nuestra red local para el diseño responsive a otros dispositivos...
+
+Observamos, que al realizar la compilación los archivos no están mimificados como al principio. Se realiza con el comando -> npm run prod 'o' yarn prod. Una vez realizado, nuestros archivos están listos para producción.
+
+--- Para recargar una página y limpiar su caché: Ctrl + F5
+Esto ocurre porque aunque los archivos hayan cambiado tienen el mismo nombre y el navegador asume que es el mismo contenido. Y en lugar de descargarlo nuevamente, simplemente utiliza su versión guardada en el caché. Esto es malo, porque a menos que un usuario haga 'hard reaload' no se verán las actualizaciones. Entonces, para obligar al navegador a volver cargar los archivos se pueden utilizar versiones que únicamente es cambiar el nombre del archivo (no se necesita en desarrollo).
+
+// webpack.mix.js
+if (mix.inProduction())
+{
+    mix.version(); // Si observamos el archivo mix-manifest.json observamos que se le agrega un identificador a cada archivo. Este es el nombre que se debe referenciar en nuestro layout. /css/app.css?id=d4f5s56a4df56as
+}
+// Se debería realizar continuamente, por eso Laravel nos prove de la función mix que nos mantiene el archivo siempre actualizado {{ mix('css/app.css') }}
