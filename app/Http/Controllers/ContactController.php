@@ -50,7 +50,7 @@ class ContactController extends Controller
         ]);
 
 /* 1r método
-        // Enviar el email -> config.mail.php / cambiamos .env
+        // Enviar el email -> config/mail.php / cambiamos .env
         // Se ha cambiado la variable de entorno MAIL_MAILER= de smtp a log
         // MAIL_MAILER=log
         // php artisan make:mail ContactReceived
@@ -88,14 +88,14 @@ class ContactController extends Controller
 
         Mail::to('a_rsc@hotmail.com')->queue(new ContactReceived($msg));
 
-        return 'Mensaje enviado';
+        return back()->with('status', __('Recibimos tu mensaje, te responderemos en menos de 24horas.'));
 
         // Producción (lo que haríamos en el servidor de producción / hosting)
-        // En el archivo config.mail.php tenemos todos los drivers que soporta Laravel por defecto para producción. Jorge recomienda SendGrid los planes son muy correctos. Laravel por defecto no soporta SendGrid, pero hay un paquete que se puede utilizar https://github.com/s-ichikawa/laravel-sendgrid-driver
+        // En el archivo config/mail.php tenemos todos los drivers que soporta Laravel por defecto para producción. Jorge recomienda SendGrid los planes son muy correctos. Laravel por defecto no soporta SendGrid, pero hay un paquete que se puede utilizar https://github.com/s-ichikawa/laravel-sendgrid-driver
 
         // Se instala -> $ composer require s-ichikawa/laravel-sendgrid-driver
         // Seguimos la guía...
-        // La instalación nos dice que se descubrió el paquete entonces podemos omitir añadir the SendGrid service en config.app.php
+        // La instalación nos dice que se descubrió el paquete entonces podemos omitir añadir the SendGrid service en config/app.php
         // Se copian unas variables en el archivo .env, también se especifican en .env.example
         // MAIL_DRIVER=sendgrid
         // SENDGRID_API_KEY='YOUR_SENDGRID_API_KEY'
@@ -104,12 +104,12 @@ class ContactController extends Controller
 
         // Vamos a app.sendgrid.com / settings / api keys / creamos una nueva llave api
 
-        // Copiar en el archivo config.services.php
+        // Copiar en el archivo config/services.php
         // 'sendgrid' => [
         //     'api_key' => env('SENDGRID_API_KEY'),
         // ],
 
-        // Copiar en el archivo config.mail.php
+        // Copiar en el archivo config/mail.php
         // 'mailers' => [
         //     'sendgrid' => [
         //         'transport' => 'sendgrid',

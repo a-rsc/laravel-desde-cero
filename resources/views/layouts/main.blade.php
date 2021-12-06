@@ -18,7 +18,10 @@
         </style>
     </head>
     <body>
-        @include('partials.navbar')
+        @include('partials._navbar')
+
+        @include('partials._session-status')
+
         @yield('content')
     </body>
 </html>

@@ -21,3 +21,44 @@ USE laravel_desde_cero;
 
 ------------------------------------------------------------------------------
 
+Video 30. Mensajes de sesión
+
+    Lo ideal cuando se envía un mensaje de contacto es redireccionarlo a la url anterior y mostrar un mensaje indicando que su mensaje se ha enviado (que dure una petición, es decir, que si el usuario actualiza el mensaje desaparece) -> mensajes flush
+
+    ¿Qué es una sesión? Es un tipo de almacenamiento temporal donde se la almacena información del usuario. Laravel por defecto soporta varios drivers para almacenar esta información de sesión (config/session.php). Se pueden utilizar 'database', 'memcached', 'redis'... Por defecto, utiliza 'file', pero en producción se recomienda utilizar 'memcached' o 'redis' que son mucho más rápidos...
+
+    Como utiliza 'file' significa que la información de la sesión se almacena en storage/framework/sessions/
+    Podemos borrar la sesión, si accedemos a localhost:8000 se crea una nueva y si abrimos otro navegador se crea otra...
+
+    Guardamos un mensaje en la sesión que durará una petición...
+    return back()->with('status', __('Recibimos tu mensaje, te responderemos en menos de 24horas.'));
+
+    @if (session('status'))
+        {{ session('status') }}
+    @endif
+
+------------------------------------------------------------------------------
+
+Video 31. Implementando login y registro
+
+    composer require laravel/ui
+    php artisan ui vue --auth
+    npm install
+    npm run dev
+
+    ver notas-auth.png
+    Los controllers LoginController y RegisterController se encuentran en el namespace App\Http\Controllers\Auth.
+
+    Cuando se ejecuta todo, se crean también las vistas... que utilizan un layout app.blade.php -> Estructura HTML + Bootstrap 4
+    También se crean:
+        Vista: resources/views/home.blade.php
+        Controlador: App\Http\Controllers\HomeController.php
+        Ruta: /home
+
+------------------------------------------------------------------------------
+
+Video 32. Cómo proteger rutas con usuario y contraseña
+
+    Middlewares: filtran las peticiones HTTP
+
+
