@@ -1,0 +1,23 @@
+Variables de Entorno
+    Entorno de Desarrollo - local
+    Entorno de Producción - hosting
+
+    Entorno de pruebas
+    Entorno de stagging...
+
+Se necesita crear un archivo .env en el Entorno de Producción. En cada entorno tendremos un archivo diferente de Variables de Entorno.
+
+APP_ENV=production
+APP_DEBUG=false
+
+------------------------------------------------------------------------------
+
+SHOW DATABASES;
+
+DROP DATABASE IF EXISTS laravel_desde_cero;
+CREATE DATABASE IF NOT EXISTS laravel_desde_cero character set utf8mb4 collate utf8mb4_unicode_ci;
+
+USE laravel_desde_cero;
+
+------------------------------------------------------------------------------
+
