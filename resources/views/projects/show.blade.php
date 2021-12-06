@@ -9,6 +9,7 @@
 
     @include('partials._validation-errors')
 
+    @auth
     <a href="{{ route('projects.edit', $project) }}">Editar proyecto</a>
 
     <form action="{{ route('projects.destroy', $project) }}" method="post">
@@ -16,6 +17,7 @@
         @method('delete')
         <button>@lang('Delete')</button>
     </form>
+    @endauth
 
     <p>{{ $project->description }}</p>
     <p>{{ $project->created_at->diffForHumans() }}</p>

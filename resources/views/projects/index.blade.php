@@ -7,7 +7,9 @@
 
     {{-- @include('partials._session-status') <br> --}}
 
+    @auth
     <a href="{{ route('projects.create') }}">Crear nuevo proyecto</a>
+    @endauth
 
     <ol>
     @forelse ($projects as $project)
