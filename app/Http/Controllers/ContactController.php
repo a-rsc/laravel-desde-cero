@@ -46,7 +46,7 @@ class ContactController extends Controller
             'subject' => 'required|between:2,80',
             'content' => 'required|between:3,2048',
         ], [
-            'name.required' => __('I need your name'),
+            // 'name.required' => __('I need your name'),
         ]);
 
 /* 1r método

@@ -63,9 +63,9 @@ Video 32. Cómo proteger rutas con usuario y contraseña
 
 ------------------------------------------------------------------------------
 
-Video 33. Introducción a Laravel mix
+Video 33. Introducción a Laravel Mix
 
-    resources/sass/app.scss -> para compilarlo utilizamos Laravel mix. Laravel mix nos proporciona una API fluida para definir los pasos de compilación de Webpack de nuestra aplicación Laravel utilizando varios procesadores de CSS y Javascript.
+    resources/sass/app.scss -> para compilarlo utilizamos Laravel Mix. Laravel Mix nos proporciona una API fluida para definir los pasos de compilación de Webpack de nuestra aplicación Laravel utilizando varios procesadores de CSS y Javascript.
 
     webpack.mix.js
     Podríamos utilizar less o stylus

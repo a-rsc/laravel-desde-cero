@@ -3,28 +3,70 @@
 @section('title', 'Contact')
 
 @section('content')
-    <h1>Contact / {{ __('Contact') }} / @lang('Contact')</h1>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h1 class="text-primary">{{ __('Contact') }} / @lang('Contact')</h1>
+                    </div>
 
-    {{-- @include('partials._session-status') --}}
+                    <div class="card-body">
+                        <form method="POST" action="{{ route('contact.store') }}">
+                            {{-- @include('partials._session-status') --}}
 
-    @include('partials._validation-errors')
+                            @include('partials._validation-errors')
 
-    <form action="{{ route('contact.store') }}" method="post">
-        {{-- Protege de ataques XSS --}}
-        @csrf
+                            {{-- Protege de ataques XSS --}}
+                            @csrf
 
-        <input type="text" name="name" placeholder="Name..." value="{{ old('name') }}" autofocus><br>
-        {!! $errors->first('name', '<small style="color: red">:message</small><br>') !!}
+                            @include('partials.forms._input', [
+                                'type' => 'text',
+                                'handle' => 'name',
+                                'name' => 'Name',
+                                'ariaDescribedby' => false,
+                                'required' => false,
+                                'autocomplete' => 'name',
+                                'autofocus' => true
+                            ])
 
-        <input type="email" name="email" placeholder="Email..." value="{{ old('email') }}"><br>
-        {!! $errors->first('email', '<small style="color: red">:message</small><br>') !!}
+                            @include('partials.forms._input', [
+                                'type' => 'email',
+                                'handle' => 'email',
+                                'name' => 'Email',
+                                'ariaDescribedby' => 'emailHelp',
+                                'required' => false,
+                                'autocomplete' => 'email',
+                                'autofocus' => false
+                            ])
 
-        <input type="text" name="subject" placeholder="Subject..." value="{{ old('subject') }}"><br>
-        {!! $errors->first('subject', '<small style="color: red">:message</small><br>') !!}
+                            @include('partials.forms._input', [
+                                'type' => 'text',
+                                'handle' => 'subject',
+                                'name' => 'Subject',
+                                'ariaDescribedby' => false,
+                                'required' => false,
+                                'autocomplete' => false,
+                                'autofocus' => false
+                            ])
 
-        <textarea name="content" cols="30" rows="10" placeholder="Content...">{{ old('content') }}</textarea><br>
-        {!! $errors->first('content', '<small style="color: red">:message</small><br>') !!}
+                            @include('partials.forms._textarea', [
+                                'handle' => 'content',
+                                'name' => 'Content',
+                                'ariaDescribedby' => false,
+                                'required' => false,
+                                'autocomplete' => false,
+                                'autofocus' => false
+                            ])
 
-        <button>@lang('Send')</button>
-    </form>
+                            @include('partials.forms._button', [
+                                'name' => 'Send',
+                            ])
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection

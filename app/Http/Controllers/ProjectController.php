@@ -28,7 +28,7 @@ class ProjectController extends Controller
 
         // return view('projects.index', compact('projects'));
         return view('projects.index', [
-            'projects' => Project::latest('created_at')->paginate(20)
+            'projects' => Project::latest('created_at')->paginate(5)
         ]);
     }
 
