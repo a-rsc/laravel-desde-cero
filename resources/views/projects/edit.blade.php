@@ -3,14 +3,27 @@
 @section('title', "Project: {$project->title}")
 
 @section('content')
-    <h1>Editar proyecto</h1>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow">
+                    <div class="card-header">
+                        <h1 class="text-primary text-center">Editar proyecto</h1>
+                    </div>
 
-    @include('partials._validation-errors')
+                    <div class="card-body">
+                        <form method="POST" action="{{ route('projects.update', $project) }}">
 
-    <form action="{{ route('projects.update', $project) }}" method="post">
-        @method('patch')
+                            @include('partials._validation-errors')
 
-        @include('projects._form', ['button' => 'Update'])
+                            @method('patch')
 
-    </form>
+                            @include('projects._form', ['button' => 'Update'])
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection

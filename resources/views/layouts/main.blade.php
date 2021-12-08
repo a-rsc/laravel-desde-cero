@@ -29,16 +29,20 @@
     </head>
     <body>
         <div class="d-flex flex-column h-screen justify-content-between" id="app">
-            <header>
+            <header class="py-3 shadow bg-white" style="z-index: 0;">
                 @include('partials._navbar')
-                @include('partials._session-status')
             </header>
-            <main class="py-3">
+            <main class="mb-auto">
+                {{-- @include('partials._session-status') --}}
                 @yield('content')
             </main>
-            <footer class="py-3 text-center text-black-50 shadow bg-white">
+            <footer class="py-3 shadow bg-white">
                 <div class="container">
-                    <a href="{{ route('welcome') }}" title="{{ config('app.name') }}">{{ config('app.name') }}</a> · copyright {{ '@' . date('Y') }}
+                    <div class="row">
+                        <div class="col text-end">
+                            <a class="text-end" href="{{ route('welcome') }}" title="{{ config('app.name') }}">{{ config('app.name') }}</a> · copyright {{ '@' . date('Y') }}
+                        </div>
+                    </div>
                 </div>
             </footer>
         </div>

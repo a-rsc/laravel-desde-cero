@@ -88,7 +88,10 @@ class ContactController extends Controller
 
         Mail::to('a_rsc@hotmail.com')->queue(new ContactReceived($msg));
 
-        return back()->with('status', __('Recibimos tu mensaje, te responderemos en menos de 24horas.'));
+        return back()
+            ->with('contextual', 'warning')
+            ->with('icon', 'info-fill')
+            ->with('status', __('We received your message, we will respond to you in less than 24 hours.'));
 
         // Producción (lo que haríamos en el servidor de producción / hosting)
         // En el archivo config/mail.php tenemos todos los drivers que soporta Laravel por defecto para producción. Jorge recomienda SendGrid los planes son muy correctos. Laravel por defecto no soporta SendGrid, pero hay un paquete que se puede utilizar https://github.com/s-ichikawa/laravel-sendgrid-driver

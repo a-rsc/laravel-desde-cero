@@ -1,68 +1,67 @@
 @extends('layouts.main')
 
+@section('title', __('Login'))
+
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">
-                    <h1 class="text-primary">{{ __('Login') }}</h1>
-                </div>
+    <div class="container py-3 shadow bg-white">
+        <div class="row">
+            <div class="col">
+                <h1 class="py-3 text-primary">{{ __('Login') }}</h1>
+                <hr>
+                <form method="POST" action="{{ route('login') }}">
+                    @csrf {{-- Protege de ataques XSS --}}
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
-                        {{-- Protege de ataques XSS --}}
-                        @csrf
+                    @include('partials.forms._input', [
+                        'type' => 'email',
+                        'id' => 'email',
+                        'handle' => 'email',
+                        'name' => 'Email',
+                        'value' => null,
+                        'ariaDescribedby' => 'emailHelp',
+                        'required' => false,
+                        'autocomplete' => 'email',
+                        'autofocus' => true
+                    ])
 
-                        @include('partials.forms._input', [
-                            'type' => 'email',
-                            'handle' => 'email',
-                            'name' => 'Email',
-                            'ariaDescribedby' => 'emailHelp',
-                            'required' => false,
-                            'autocomplete' => 'email',
-                            'autofocus' => true
-                        ])
+                    @include('partials.forms._input', [
+                        'type' => 'password',
+                        'id' => 'password',
+                        'handle' => 'password',
+                        'name' => 'Password',
+                        'value' => null,
+                        'ariaDescribedby' => false,
+                        'required' => false,
+                        'autocomplete' => 'current-password',
+                        'autofocus' => false
+                    ])
 
-                        @include('partials.forms._input', [
-                            'type' => 'password',
-                            'handle' => 'password',
-                            'name' => 'Password',
-                            'ariaDescribedby' => false,
-                            'required' => false,
-                            'autocomplete' => 'current-password',
-                            'autofocus' => false
-                        ])
+                    <div class="row mb-3">
+                        <div class="col-md-6 offset-md-4">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
-                        <div class="row mb-3">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
+                                <label class="form-check-label" for="remember">
+                                    {{ __('Remember Me') }}
+                                </label>
                             </div>
                         </div>
+                    </div>
 
-                        <div class="row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
+                    <div class="row mb-0">
+                        <div class="col-md-8 offset-md-4">
+                            <button type="submit" class="btn btn-primary" title="{{ __('Login') }}">
+                                {{ __('Login') }}
+                            </button>
 
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
-                            </div>
+                            @if (Route::has('password.request'))
+                                <a class="btn btn-link" href="{{ route('password.request') }}">
+                                    {{ __('Forgot Your Password?') }}
+                                </a>
+                            @endif
                         </div>
-                    </form>
-                </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-</div>
 @endsection
