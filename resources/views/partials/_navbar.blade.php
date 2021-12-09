@@ -38,6 +38,6 @@
         </div>
     </div>
 </nav>
-<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+<form id="logout-form" method="POST" class="d-none" action="{{ route('logout') }}">
     @csrf {{-- Protege de ataques XSS --}}
 </form>

@@ -6,11 +6,12 @@
     <div class="container py-3 shadow bg-white">
         <div class="row">
             <div class="col">
-                <h1 class="py-3 text-primary">{{ __('Login') }}</h1>
+                <h1 class="py-3">{{ __('Login') }}</h1>
                 <hr>
                 <form method="POST" action="{{ route('login') }}">
                     @csrf {{-- Protege de ataques XSS --}}
-
+                    {{-- @include('partials._validation-errors') --}}
+                    @include('partials._session-status')
                     @include('partials.forms._input', [
                         'type' => 'email',
                         'id' => 'email',
@@ -18,11 +19,10 @@
                         'name' => 'Email',
                         'value' => null,
                         'ariaDescribedby' => 'emailHelp',
-                        'required' => false,
+                        'required' => true,
                         'autocomplete' => 'email',
                         'autofocus' => true
                     ])
-
                     @include('partials.forms._input', [
                         'type' => 'password',
                         'id' => 'password',
@@ -30,11 +30,10 @@
                         'name' => 'Password',
                         'value' => null,
                         'ariaDescribedby' => false,
-                        'required' => false,
+                        'required' => true,
                         'autocomplete' => 'current-password',
                         'autofocus' => false
                     ])
-
                     <div class="row mb-3">
                         <div class="col-md-6 offset-md-4">
                             <div class="form-check">
@@ -46,13 +45,11 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="row mb-0">
                         <div class="col-md-8 offset-md-4">
                             <button type="submit" class="btn btn-primary" title="{{ __('Login') }}">
                                 {{ __('Login') }}
                             </button>
-
                             @if (Route::has('password.request'))
                                 <a class="btn btn-link" href="{{ route('password.request') }}">
                                     {{ __('Forgot Your Password?') }}

@@ -1,5 +1,6 @@
-{{-- Protege de ataques XSS --}}
-@csrf
+@csrf {{-- Protege de ataques XSS --}}
+{{-- @include('partials._validation-errors') --}}
+@include('partials._session-status')
 
 @include('partials.forms._input', [
     'type' => 'text',
@@ -7,7 +8,7 @@
     'name' => 'Title',
     'value' => $project->title,
     'ariaDescribedby' => false,
-    'required' => false,
+    'required' => true,
     'autocomplete' => false,
     'autofocus' => true
 ])
@@ -17,7 +18,7 @@
     'name' => 'Description',
     'value' => $project->description,
     'ariaDescribedby' => false,
-    'required' => false,
+    'required' => true,
     'autocomplete' => false,
     'autofocus' => false
 ])

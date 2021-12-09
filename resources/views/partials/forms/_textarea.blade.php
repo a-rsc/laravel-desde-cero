@@ -1,5 +1,5 @@
 <div class="row mb-3">
-    <label for="{{ $id }}" class="col-md-4 col-form-label text-md-right">{{ __($name) }}</label>
+    <label for="{{ $id }}" class="col-md-4 col-form-label text-md-right">{{ __($name) }}@if ($required) <span class="required">*</span> @endif</label>
 
     <div class="col-md-6">
         <textarea
