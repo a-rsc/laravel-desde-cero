@@ -6,31 +6,31 @@ use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Project extends Model
+class Category extends Model
 {
     use HasFactory;
 
-    protected $table = 'projects';
+    protected $table = 'categories';
     protected $primaryKey = 'id';
     protected $keyType = 'integer';
     public $incrementing = true;
     public $timestamps = true;
 
-    protected $fillable = ['category_id', 'title', 'description'];
+    protected $fillable = ['category'];
 
     public function getRouteKeyName()
     {
         return 'slug';
     }
 
-    public function setTitleAttribute($value)
+    public function setCategoryAttribute($value)
     {
-        $this->attributes['title'] = ucwords(strtolower($value));
-        $this->attributes['slug'] = Str::slug($this->attributes['title']);
+        $this->attributes['category'] = $value;
+        $this->attributes['slug'] = Str::slug($value);
     }
 
-    public function category()
+    public function projects()
     {
-        return $this->belongsTo(Category::class, 'category_id');
+        return $this->hasMany(Project::class, 'category_id');
     }
 }

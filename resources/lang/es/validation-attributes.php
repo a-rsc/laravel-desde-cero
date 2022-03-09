@@ -17,6 +17,7 @@ return [
         'first_name'            => 'nombre',
         'gender'                => 'género',
         'hour'                  => 'hora',
+        'image'                 => 'imagen',
         'last_name'             => 'apellido',
         'message'               => 'mensaje',
         'minute'                => 'minuto',

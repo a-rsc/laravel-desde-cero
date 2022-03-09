@@ -1,9 +1,9 @@
 <div class="row mb-3">
-    <label for="{{ $id }}" class="col-md-4 col-form-label text-md-right">{{ __($name) }}@if ($required) <span class="required">*</span> @endif</label>
+    <label for="{{ $handle }}" class="col-md-4 col-form-label text-md-right">{{ __($name) }}@if ($required) <span class="required">*</span> @endif</label>
 
     <div class="col-md-6">
         <input
-            id="{{ $id }}"
+            id="{{ $handle }}"
             type="{{ $type }}"
             class="form-control @error($handle) is-invalid @enderror"
             name="{{ $handle }}"

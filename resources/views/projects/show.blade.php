@@ -18,6 +18,12 @@
         </div>
         <div class="row justify-content-between">
             <div class="col">
+                @if ($project->image)
+                <img src="/storage/{{ $project->image }}" class="img-fluid rounded mx-auto d-block" alt="" style="height: 250px; object-fit: cover;">
+                @endif
+                @if ($project->category)
+                <a class="badge bg-danger" href="{{ route('categories.show', $project->category) }}">{{ $project->category->category }}</a>
+                @endif
                 <p class="lead text-secondary">{{ $project->description }}</p>
                 <p class="text-end">{{ $project->created_at->diffForHumans() }}</p>
                 <a href="{{ route('projects.index') }}" style="text-decoration: none;">< Volver a Proyectos</a>

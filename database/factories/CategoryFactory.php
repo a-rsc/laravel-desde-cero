@@ -2,10 +2,9 @@
 
 namespace Database\Factories;
 
-use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class ProjectFactory extends Factory
+class CategoryFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -14,11 +13,8 @@ class ProjectFactory extends Factory
      */
     public function definition()
     {
-        $title = $this->faker->unique()->sentence();
-
         return [
-            'title' => $title,
-            'description' => $this->faker->text(),
+            'category' => $this->faker->unique()->word(),
         ];
     }
 }

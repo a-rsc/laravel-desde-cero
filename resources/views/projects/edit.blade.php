@@ -12,7 +12,7 @@
                     </div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('projects.update', $project) }}">
+                        <form method="POST" action="{{ route('projects.update', $project) }}" enctype="multipart/form-data">
 
                             @include('partials._validation-errors')
 

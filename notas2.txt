@@ -1,0 +1,59 @@
+php --ini -> archivos de configuración que está utilizando nuestra aplicación de php...
+
+Si se tuviese un archivo de memory limit se inspeccionaría, en otro caso se puede inspeccionar la variable memory_limit en el archivo php.ini
+
+Loaded Configuration File:         /etc/php/8.1/cli/php.ini
+
+A continuación, se reinicían los servicios...
+
+php artisan serve
+...
+
+https://aprendible.com/series/aprende-laravel-intermedio/lecciones/como-utilizar-eventos-y-listeners/
+
+########################################################## Lesson 8 - Cómo utilizar Eventos y Listeners
+
+EventServiceProvider...
+
+php artisan event:generate
+
+ProjectController.php -> ProjectSaved::dispatch($project);
+
+########################################################## Lesson 9 - Delegando la optimización de imágenes a las queues
+
+.env
+config/queue.php
+
+# QUEUE_CONNECTION=sync
+QUEUE_CONNECTION=database
+
+php artisan queue:table
+mfs
+
+Las colas no se ejecutan automáticamente se debe crear un queue worker y encenderlo...
+
+php artisan queue:work
+
+########################################################## Lesson 10 - Manejo de jobs fallidos
+
+php artisan queue:failed-table -> jobs fallidos
+mfs
+
+Si un job falla:
+1. Inspeccionamos el job
+2. Corregimos el error
+3. Reintentamos el job -> php artisan queue:retry all
+4. Reiniciamos el worker -> php artisan queue:work
+
+########################################################## Lesson 14 - Problema de consultas N+1
+
+routes\web.php
+
+// Listener para ver las consultas sql que estamos realizando...
+DB::listen(function($query) {
+    var_dump($query->sql);
+});
+
+Es importante añadir en muchas consultas la función with para añadir la relación y evitar que se realicen más consultas que las que deberían...
+
+
